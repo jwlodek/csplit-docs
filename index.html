@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - csplit Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> csplit Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#csplit">csplit</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#why-does-it-exist">Why does it exist?</a></li>
+        
+            <li><a class="toctree-l3" href="#what-is-it">What is it?</a></li>
+        
+            <li><a class="toctree-l3" href="#usage">Usage</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="install/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="functions/">Functions</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="examples/">Examples</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">csplit Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p align="center">
+    <img src="assets/csplit_logo.png">
+</p>
+
+<h1 id="csplit">csplit <img alt="" src="https://travis-ci.org/jwlodek/csplit.svg?branch=master" /></h1>
+<p>A single header C library that can be used to easily handle splitting strings and other string operations in C.</p>
+<h3 id="why-does-it-exist">Why does it exist?</h3>
+<p>I wrote csplit because I found string manipulation in C to be very difficult, particularly the <code>strtok</code> built in function. I have successfully used csplit in several projects, primarily for parsing input files, and I hope it proves to be of use to you.</p>
+<h3 id="what-is-it">What is it?</h3>
+<p><code>csplit</code> is intended to be a C string manipulation library that attempts to have a similar syntax as pythonic string functions. </p>
+<p>For example, passing a negative index into a csplit function will simply perform whatever operation was selected starting from the rearmost index. The primary usage for csplit is as a replacement for <code>strtok</code>, though it also includes several other string manipulation functions.</p>
+<p>For my use cases, I have used csplit for parsing <code>.csv</code> files, custom <code>CONFIGURE</code> files I write, and other things.</p>
+<p><code>csplit</code> was written as a single header C library to simplify it's inclusion into other projects I have written. This may not be the most efficient way of writing this, seeing as csplit does contain quite a few functions, but I found that this implementation made using it for the small projects I work on that require some string manipulation to be much easier.</p>
+<h3 id="usage">Usage</h3>
+<p>The core functions that csplit provides are the following:</p>
+<pre><code class="C">CSplitError_t csplit(CSplitList_t* list, char* input_str, char* token);
+</code></pre>
+
+<p>This will split the input string based on the token, as many times as possible. You may also limit the number of splits with:</p>
+<pre><code class="C">CSplitError_t csplit_lim(CSplitList_t* list, char* input_str, char* token, int max_splits);
+</code></pre>
+
+<p>where max_splits is the maximum number of splits allowed. If max_splits is negative, csplit will perform the splits from the end of the string first, instead of from the front.</p>
+<p>In order to use these core functions, we must first initialize a <code>CSplitList_t</code> struct:</p>
+<pre><code class="C">CSplitList_t* list = csplit_init_list();
+</code></pre>
+
+<p>This will create a doubly linked list data structure that will be used to internally store the split string fragments. Once this struct is allocated, we may call one of the <code>csplit</code> core functions listed above. This will populate the linked list with <code>CSplitFragment_t</code> structures that contain the string fragments found by splitting.</p>
+<p>In order to access these fragments, we can use the</p>
+<pre><code class="C">char* csplit_get_fragment_at_index(CSplitList_t* list, int index);
+</code></pre>
+
+<p>function. Once again, as is the case in python, passing a negative number will net the string fragment starting from the rear of the list. For example, an index of -1 would be the last fragment, -2 would be the second to last fragment, etc.</p>
+<p>Once we are done with the split fragments and our list, we must free up the memory associated with it:</p>
+<pre><code class="C">void csplit_clear_list(CSplitList_t* list);
+</code></pre>
+
+<p>For more detailed sample code using the <code>csplit</code> library, make sure to take a look at the Examples tab of this documentation.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install/" class="btn btn-neutral float-right" title="Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="install/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2019-08-06 19:21:58
+-->

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Examples - csplit Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Examples";
+    var mkdocs_page_input_path = "examples.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> csplit Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../install/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../functions/">Functions</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Examples</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#csplit-usage-examples">csplit Usage Examples</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#basic-example">Basic Example</a></li>
+        
+            <li><a class="toctree-l3" href="#csv-reading-example">.csv reading example</a></li>
+        
+            <li><a class="toctree-l3" href="#basic-string-operations-example">Basic string operations example</a></li>
+        
+            <li><a class="toctree-l3" href="#custom-configure-example">Custom configure example</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">csplit Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Examples</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="csplit-usage-examples">csplit Usage Examples</h1>
+<p>To build csplit examples, enter the <code>examples</code> directory, and run:</p>
+<pre><code>make clean all
+</code></pre>
+
+<p>or</p>
+<pre><code>make clean debug
+</code></pre>
+
+<p>to have access to gdb debugging of the examples. This has been tested on linux, as well as on Windows with gcc and make included in MinGW.</p>
+<h4 id="basic-example">Basic Example</h4>
+<p>Example demonstrating using csplit for splitting string on single character and getting split fragments based on indexes.</p>
+<pre><code class="C">// include csplit and stdio
+#include &quot;csplit.h&quot;
+#include &lt;stdio.h&gt;
+
+
+int main(int argc, char** argv){
+    // our test string
+    char* test_string = &quot;Hello how are you doing?&quot;;
+    printf(&quot;Our demo string is: %s\n&quot;, test_string);
+
+    // initialize our output list
+    CSplitList_t* list = csplit_init_list();
+
+    // split on the &quot; &quot; (space) character
+    CSplitError_t err = csplit(list, test_string, &quot; &quot;);
+
+    // print the list of split fragments to stdout
+    print_csplit_list_info(list, stdout);
+
+    // print a separator
+    printf(&quot;----------------------------\n&quot;);
+
+    // demo of getting fragment string at an index, 3 index will give us &quot;you&quot;
+    char* test_get_index = get_fragment_at_index(list, 3);
+
+    // demo of getting fragment string using reverse index, -1 will give us the last
+    // fragment, in this case &quot;doing?&quot;
+    char* test_get_r_index = get_fragment_at_index(list, -1);
+
+    // print results
+    printf(&quot;Get index: %s\n&quot;, test_get_index);
+    printf(&quot;Get reverse index: %s\n&quot;, test_get_r_index);
+
+    // free memory
+    csplit_clear_list(list);
+}
+</code></pre>
+
+<h4 id="csv-reading-example">.csv reading example</h4>
+<p>Example of using csplit to read .csv files.</p>
+<pre><code class="C">// include csplit and stdio
+#include &quot;csplit.h&quot;
+#include &lt;stdio.h&gt;
+
+
+int main(int argc, char** argv){
+    // open the file, return if NULL
+    FILE* csv_file = fopen(&quot;exampleFiles/test.csv&quot;, &quot;r&quot;);
+    if(csv_file == NULL){
+        printf(&quot;Failed to open file, exiting.\n&quot;);
+        return -1;
+    }
+
+    // buffer for reading from file
+    char buffer[256];
+    while(fgets(buffer, 256, csv_file)) {
+
+        // ignore lines that are blank
+        if(strlen(buffer) &gt; 1){
+            // initialize the list, strip whitespace, and call csplit on commas
+            CSplitList_t* list = csplit_init_list();
+            char* temp = csplit_strip(buffer);
+            CSplitError_t err = csplit(list, temp, &quot;,&quot;);
+            free(temp); /* Make sure to free stripped line */
+
+            // print the split values
+            print_csplit_list_info(list, stdout);
+
+            // example iterating through resulting list and summing values read from .csv file
+            CSplitFragment_t* current_fragment = list-&gt;head;
+            int sum = 0;
+            while(current_fragment != NULL){
+                sum = sum + atoi(current_fragment-&gt;text);
+                current_fragment = current_fragment-&gt;next;
+            }
+
+            // print sum of numbers in line, and free memory
+            printf(&quot;The sum of the elements in the line = %d\n&quot;, sum);
+            csplit_clear_list(list);
+
+            printf(&quot;----------------------\n&quot;);
+        }
+    }
+    fclose(csv_file);
+    return 0;
+}
+</code></pre>
+
+<h3 id="basic-string-operations-example">Basic string operations example</h3>
+<p>A simple example showing some additional string processing functions included with csplit</p>
+<pre><code class="C">#include &quot;csplit.h&quot;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char** argv){
+    // init test string
+    char* test_string = &quot;Hello how are you doing?\n\n&quot;;
+    printf(&quot;Our demo string is: --%s--\n&quot;, test_string);
+
+    // strip outermost whitespace (2 newlines)
+    char* stripped_str = csplit_strip(test_string);
+    printf(&quot;The stripped string is --%s--\n&quot;, stripped_str);
+    printf(&quot;Note the disappeared newline characters.\n&quot;);
+
+    // startswith command
+    int temp = csplit_startswith(test_string, &quot;Hello&quot;);
+    if(temp == 0){
+        printf(&quot;The input started with 'Hello'\n&quot;);
+    }
+
+    // endswith - will fail here because of newlines, but succeed on the stripped one.
+    temp = csplit_endswith(test_string, &quot;doing?&quot;);
+    if(temp == 0){
+        printf(&quot;The input string ended with 'doing?'\n&quot;);
+    }
+    temp = csplit_endswith(stripped_str, &quot;doing?&quot;);
+    if(temp == 0){
+        printf(&quot;After stripping away newlines, the string ends with 'doing?'\n&quot;);
+    }
+
+    // remove all whitespace and print
+    char* no_whitespace = csplit_remove_whitespace(test_string);
+    printf(&quot;The input string without any whitespace: --%s--\n&quot;, no_whitespace);
+
+    // free memory.
+    free(stripped_str);
+    free(no_whitespace);
+}
+</code></pre>
+
+<h3 id="custom-configure-example">Custom configure example</h3>
+<p>An example of using csplit to read a custom configuration file</p>
+<pre><code class="C">#include &quot;csplit.h&quot;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char** argv){
+    // open the file
+    FILE* fp = fopen(&quot;exampleFiles/CONFIGURE&quot;, &quot;r&quot;);
+
+    if(fp == NULL){
+        printf(&quot;Couldn't open file.\n&quot;);
+        return -1;
+    }
+
+    // char arrays where we will store resulting config
+    char install_path[32];
+    char build_utests[32];
+    char build_examples[32];
+
+    char line_buff[256];
+    while(fgets(line_buff, 256, fp)){
+
+        // use csplit and string functions to remove comments and empty lines
+        if(csplit_startswith(line_buff, &quot;#&quot;) != 0 &amp;&amp; strlen(line_buff) &gt; 1){
+            CSplitList_t* list = csplit_init_list();
+
+            // initialize list, strip of whitespace, and split on '=' character.
+            char* temp = csplit_strip(line_buff);
+            CSplitError_t err = csplit(list, temp, &quot;=&quot;);
+
+            // free up the stripped string
+            free(temp);
+
+            // print some info
+            printf(&quot;Found config line:\n&quot;);
+            csplit_print_list_info(list, stdout);
+
+            // if we match one of our targets, copy the value (index 1) into the appropriate array
+            if(csplit_startswith(csplit_get_fragment_at_index(list, 0), &quot;INSTALL_PATH&quot;) == 0){
+                strncpy(install_path, csplit_get_fragment_at_index(list, 1), sizeof(install_path));
+            }
+            else if(csplit_startswith(csplit_get_fragment_at_index(list, 0), &quot;INSTALL_UTESTS&quot;) == 0){
+                strncpy(build_utests, csplit_get_fragment_at_index(list, 1), sizeof(build_utests));
+            }
+            else if(csplit_startswith(csplit_get_fragment_at_index(list, 0), &quot;BUILD_EXAMPLES&quot;) == 0){
+                strncpy(build_examples, csplit_get_fragment_at_index(list, 1), sizeof(build_examples));
+            }
+
+            // free list memory
+            csplit_clear_list(list);
+        }
+    }
+
+    // close the file, print our results.
+    fclose(fp);
+    printf(&quot;Configuration read from CONFIGURE file is:\n&quot;);
+    printf(&quot;INSTALL_LOCATION: %s, INSTALL_UTESTS: %s, BUILD_EXAMPLES: %s\n&quot;, install_path, build_utests, build_examples);
+    return 0;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../functions/" class="btn btn-neutral" title="Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../functions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Functions - csplit Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Functions";
+    var mkdocs_page_input_path = "functions.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> csplit Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../install/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Functions</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#csplith-external-functions">csplit.h External Functions</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#csplit">csplit</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_lim">csplit_lim</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_init_list">csplit_init_list</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_clear_list">csplit_clear_list</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_print_list_info">csplit_print_list_info</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_get_fragment_at_index">csplit_get_fragment_at_index</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_reverse_list">csplit_reverse_list</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_strip">csplit_strip</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_remove_whitespace">csplit_remove_whitespace</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_startswith">csplit_startswith</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_endswith">csplit_endswith</a></li>
+        
+            <li><a class="toctree-l3" href="#rcsplit">rcsplit</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#csplith-internal-functions">csplit.h Internal Functions</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#csplit_push_to_list">csplit_push_to_list</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_rstr">csplit_rstr</a></li>
+        
+            <li><a class="toctree-l3" href="#csplit_str">csplit_str</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../examples/">Examples</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">csplit Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Functions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="csplith-external-functions">csplit.h External Functions</h1>
+<h3 id="csplit">csplit</h3>
+<pre><code>CSplitError_t csplit(CSplitList_t* list, char* input_str, char* token);
+</code></pre>
+
+<p>Top level csplit function call. Outputs a csplit list split on a string token. Calls csplit_lim with max_splits = len(input_str), ensuring that all possible splits will be made. </p>
+<p><strong>Params:</strong><br />
+[out]: list           -&gt; output list splitting input str on string token<br />
+[in]: input_str       -&gt; input string which will be split<br />
+[in]: token           -&gt; string on which to split  </p>
+<p><strong>Returns:</strong><br />
+err             -&gt; error code if there was a problem with csplitting.</p>
+<h3 id="csplit_lim">csplit_lim</h3>
+<pre><code>CSplitError_t csplit_lim(CSplitList_t* list, char* input_str, char* token, int max_splits);
+</code></pre>
+
+<p>Function that allows user to split based on a limited number of splits, either forward or in reverse. A max_splits &gt;= len(input_str) will guarantee all possible splits </p>
+<p><strong>Params:</strong><br />
+[out]: list           -&gt; output list splitting input str on string token<br />
+[in]: input_str       -&gt; input string which will be split<br />
+[in]: token           -&gt; string on which to split<br />
+[in]: max_splits      -&gt; max number of splits to perform. Negative if starting from end of string.  </p>
+<p><strong>Returns:</strong><br />
+err             -&gt; error code if there was a problem with csplitting.</p>
+<h3 id="csplit_init_list">csplit_init_list</h3>
+<pre><code>CSplitList_t* csplit_init_list();
+</code></pre>
+
+<p>Function for initializing a csplit list </p>
+<p><strong>Params:</strong><br />
+[in]: buff_size   -&gt; user set buffer size. Make sure this is large enough for your largest fragment  </p>
+<p><strong>Returns:</strong><br />
+list            -&gt; an allocated csplit list</p>
+<h3 id="csplit_clear_list">csplit_clear_list</h3>
+<pre><code>void csplit_clear_list(CSplitList_t* list);
+</code></pre>
+
+<p>Clears all memory for an allocated csplit list </p>
+<p><strong>Params:</strong><br />
+[in]: list    -&gt; a previously allocated csplit list to be freed  </p>
+<h3 id="csplit_print_list_info">csplit_print_list_info</h3>
+<pre><code>void csplit_print_list_info(CSplitList_t* list, FILE* fp);
+</code></pre>
+
+<p>Function that prints information about a csplit list </p>
+<p><strong>Params:</strong><br />
+[in]: list    -&gt; list for which to print info<br />
+[in]: fp      -&gt; file pointer to print into.  </p>
+<h3 id="csplit_get_fragment_at_index">csplit_get_fragment_at_index</h3>
+<pre><code>char* csplit_get_fragment_at_index(CSplitList_t* list, int index);
+</code></pre>
+
+<p>Function that returns the string fragment at a certain index in the list </p>
+<p><strong>Params:</strong><br />
+[in]: list    -&gt; list generated by csplit<br />
+[in]: index   -&gt; index to search for (can be negative for getting at index from back of list)  </p>
+<p><strong>Returns:</strong><br />
+text        -&gt; string at the given index or NULL if index out of range.</p>
+<h3 id="csplit_reverse_list">csplit_reverse_list</h3>
+<pre><code>CSplitError_t csplit_reverse_list(CSplitList_t* list);
+</code></pre>
+
+<p>Function that reverses the list generated by csplit </p>
+<p><strong>Params:</strong><br />
+[out]: list   -&gt; list to reverse  </p>
+<p><strong>Returns:</strong><br />
+err         -&gt; error code if there is an error</p>
+<h3 id="csplit_strip">csplit_strip</h3>
+<pre><code>char* csplit_strip(char* input_str);
+</code></pre>
+
+<p>Function that strips a given string into an output string. Will remove whitespace character:  * \n, \r, \t, space will be removed from the start and end of each string. </p>
+<p><strong>Params:</strong><br />
+[in]: input_str   -&gt; the input string to strip  </p>
+<p><strong>Returns:</strong><br />
+output_str      -&gt; the string with whitespace removed from the ends. Must be freed.</p>
+<h3 id="csplit_remove_whitespace">csplit_remove_whitespace</h3>
+<pre><code>char* csplit_remove_whitespace(char* input_str);
+</code></pre>
+
+<p>Function that removes all whitespace characters of a given string into an output string.  * Note that resulting char* must be free'd after it is no longer used </p>
+<p><strong>Params:</strong><br />
+[in]: input_str   -&gt; the input string to strip  </p>
+<p><strong>Returns:</strong><br />
+output_str      -&gt; the string with whitespace removed.</p>
+<h3 id="csplit_startswith">csplit_startswith</h3>
+<pre><code>int csplit_startswith(char* input_str, char* starts_with);
+</code></pre>
+
+<p>Function that checks if a given string starts with another given string. </p>
+<p><strong>Params:</strong><br />
+[in]: input_str       -&gt; string to check against<br />
+[in]: starts_with     -&gt; string to try to match with start of input string  </p>
+<p><strong>Returns:</strong><br />
+int             -&gt; -2 if input is invalid, -1 if doesn't start with given string, or 0 if it does</p>
+<h3 id="csplit_endswith">csplit_endswith</h3>
+<pre><code>int csplit_endswith(char* input_str, char* ends_with);
+</code></pre>
+
+<p>Function that checks if a given string ends with another given string. </p>
+<p><strong>Params:</strong><br />
+[in]: input_str       -&gt; string to check against<br />
+[in]: ends_with       -&gt; string to try to match with end of input string  </p>
+<p><strong>Returns:</strong><br />
+int             -&gt; -2 if input is invalid, -1 if doesn't end with given string, or 0 if it does</p>
+<h3 id="rcsplit">rcsplit</h3>
+<pre><code>CSplitError_t rcsplit(CSplitList_t* output_list, char* input_str, char* token);
+</code></pre>
+
+<p>Function that runs csplit and then reverses the output. </p>
+<p><strong>Params:</strong><br />
+[out]: output_list    -&gt; output list splitting input str on string token<br />
+[in]: input_str       -&gt; input string which will be split<br />
+[in]: token           -&gt; string on which to split  </p>
+<p><strong>Returns:</strong><br />
+err             -&gt; error code if there was a problem with csplitting.</p>
+<h1 id="csplith-internal-functions">csplit.h Internal Functions</h1>
+<p>These functions are used internally by the csplit library, and it is not recommended to use them outside of this internal context.</p>
+<h3 id="csplit_push_to_list">csplit_push_to_list</h3>
+<pre><code>CSplitError_t csplit_push_to_list(CSplitList_t* list, CSplitFragment_t* fragment, size_t buff_size);
+</code></pre>
+
+<p>Function that pushes a new CSplitFragment to the end of the list, and allocates memory for the text</p>
+<p><strong>Params:</strong><br />
+[out]: list       -&gt; The list with fragment appended to the tail<br />
+[in]: fragment    -&gt; fragment to append to the list. fragment-&gt;text will be allocated  </p>
+<h3 id="csplit_rstr">csplit_rstr</h3>
+<pre><code>CSplitError_t csplit_rstr(CSplitList_t* list, char* input_str, char* token, int max_splits);
+</code></pre>
+
+<p>Function that runs csplit on a particular string from the end of the input. Called if max_splits &lt; 0 </p>
+<p><strong>Params:</strong><br />
+[out]: list       -&gt; split input string into this list structure<br />
+[in]: input_str   -&gt; input string<br />
+[in]: token       -&gt; character on which to split<br />
+[in]: max_splits  -&gt; maximum number of splits. If negative will split from end of string  </p>
+<p><strong>Returns:</strong><br />
+err             -&gt; error code if there was a problem with csplitting.</p>
+<h3 id="csplit_str">csplit_str</h3>
+<pre><code>CSplitError_t csplit_str(CSplitList_t* list, char* input_str, char* token, int max_splits);
+</code></pre>
+
+<p>Function that splits a given input string based on another string. </p>
+<p><strong>Params:</strong><br />
+[out]: list           -&gt; output list splitting input str on string token<br />
+[in]: input_str       -&gt; input string which will be split<br />
+[in]: token           -&gt; string on which to split<br />
+[in]: max_splits      -&gt; max number of splits to perform. Negative if starting from end of string.  </p>
+<p><strong>Returns:</strong><br />
+err             -&gt; error code if there was a problem with csplitting.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
